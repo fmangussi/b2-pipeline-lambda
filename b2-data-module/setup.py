@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
-with open('datamodule/requirements.txt') as f:
-    required = f.read().splitlines()
+with open('requirements.txt') as f:
+    required = [item for item in f.read().splitlines() if len(item) > 0 and item[0] != '-' ]
 
 setup(
     name="datamodule",
