@@ -1,0 +1,9 @@
+import json
+import base64
+#from pprint import pprint
+
+d = {'Records': [{'kinesis': {'kinesisSchemaVersion': '1.0', 'partitionKey': '2019-06-10 04:27:03', 'sequenceNumber': '49595739723433006697952443478521571195979424880509583362', 'data': 'eyJ2ZXJzaW9uIjogMS4wLCAic291cmNlIjogInMzOi8vZWlzLWIyLXVwbG9hZC1kZXYvYXV4Lzg5YzVkOTBlMTI5OTAyZTRiYTgzYWY5ZDhjNzRhNWUxLzIwMTktMDUtMjIvVEJELVRCRC0yMDE5MDUyMi1zYWJlcl9zZW5zb3Jfb25ib2FyZF90ZW1wZXJhdHVyZS0yMTU4MzEudGFyLmJ6MiIsICJ2YWxpZCI6IHRydWUsICJpbmNvbWluZ190aW1lc3RhbXAiOiAiMjAxOS0wNi0xMCAwNDoyNjo1OC42NzMwMDAiLCAib3V0Z29pbmdfdGltZXN0YW1wIjogIjIwMTktMDYtMTAgMDQ6Mjc6MDMiLCAicGF5bG9hZCI6IFsiczM6Ly9laXMtYjItc3RhZ2luZy1kYXRhLWRldi9yYXctcHJvY2Vzc29yL3Byb2Nlc3NfZGF0ZT0yMDE5LTA2LTEwL2RhdGF0eXBlPWF1eC9UQkQtVEJELTIwMTkwNTIyLXNhYmVyX3NlbnNvcl9vbmJvYXJkX3RlbXBlcmF0dXJlLTIxNTgzMS50YXIuYnoyX19mZjM4YmU2YS04YjM3LTExZTktOGEwNy1kYTc1NzNjNTY3MjguY3N2Lmd6Il0sICJ0eXBlIjogImF1eCIsICJmaWxlbmFtZSI6ICJhdXgvODljNWQ5MGUxMjk5MDJlNGJhODNhZjlkOGM3NGE1ZTEvMjAxOS0wNS0yMi9UQkQtVEJELTIwMTkwNTIyLXNhYmVyX3NlbnNvcl9vbmJvYXJkX3RlbXBlcmF0dXJlLTIxNTgzMS50YXIuYnoyIn0=', 'approximateArrivalTimestamp': 1560140823.393}, 'eventSource': 'aws:kinesis', 'eventVersion': '1.0', 'eventID': 'shardId-000000000000:49595739723433006697952443478521571195979424880509583362', 'eventName': 'aws:kinesis:record', 'invokeIdentityArn': 'arn:aws:iam::019997017433:role/lambda-b2-record-processor-InitFunctionRole-Q5SNGFMZ8QXJ', 'awsRegion': 'us-west-2', 'eventSourceARN': 'arn:aws:kinesis:us-west-2:019997017433:stream/eis-b2-raw-stream'}]}
+
+for record in d['Records']:
+    data = json.loads(base64.b64decode(record['kinesis']['data']).decode())
+    print(data)

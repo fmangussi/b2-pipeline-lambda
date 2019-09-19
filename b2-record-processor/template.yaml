@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  InitFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Environment:
+          Variables:
+              LOG_LEVEL: INFO
+              PROCESSED_DATA_STREAM_NAME: !ImportValue EisB2ProcessedStream
+              INVALID_DATASTREAM_NAME: !ImportValue EisB2InvalidStream
+              SAVED_DATA_STREAM_NAME: !ImportValue EisB2SavedStream
+              STAGE_BUCKET_NAME: !ImportValue BStagingData
+      CodeUri: lambda/
+      Handler: handler.lambda_handler
+      Runtime: python3.7
+      Timeout: 900
+      MemorySize: 3008
+      FunctionName: b2_record_processor
+      Description: Kinesis consumer that is responsible to transform incoming JSON from raw data stream and put into Processed Data Stream"
+      Tracing: Active
+      Role: 
+      Policies:
+        - AmazonDynamoDBFullAccess
+        - AWSLambdaExecute
+        - AmazonS3FullAccess
+        - AmazonKinesisFullAccess
+      Events:
+        Stream:
+          Type: Kinesis
+          Properties:
+            BatchSize: 1
+            Stream:
+                Fn::Join:
+                  - ""
+                  - - "arn:aws:kinesis:"
+                    - Ref: AWS::Region
+                    - ":"
+                    - Ref: AWS::AccountId
+                    - ":stream/"
+                    - !ImportValue EisB2RawStream
+            StartingPosition: LATEST

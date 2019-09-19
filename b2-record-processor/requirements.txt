@@ -1,0 +1,16 @@
+-i https://pypi.org/simple
+-e ./../b2-data-module
+boto3==1.9.231
+botocore==1.12.231
+docutils==0.15.2
+fastjsonschema==2.11
+fsspec==0.4.5
+jmespath==0.9.4
+numpy==1.17.2
+pandas==0.25.1
+python-dateutil==2.8.0 ; python_version >= '2.7'
+pytz==2019.2
+s3fs==0.3.4
+s3transfer==0.2.1
+six==1.12.0
+urllib3==1.25.3 ; python_version >= '3.4'

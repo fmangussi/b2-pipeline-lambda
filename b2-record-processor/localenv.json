@@ -1,0 +1,9 @@
+{
+  "InitFunction": {
+    "LOG_LEVEL": "INFO",
+    "PROCESSED_DATA_STREAM_NAME": "eis-b2-processed-stream",
+    "INVALID_DATASTREAM_NAME": "eis-b2-invalid-stream",
+    "SAVED_DATA_STREAM_NAME": "eis-b2-saved-stream",
+    "STAGE_BUCKET_NAME": "eis-b2-staging-data-dev"
+  }
+}
